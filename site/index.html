@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Food Delivery App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f5f5f5;
+      color: #222;
+    }
+    h1 { color: #d94832; }
+    .restaurant, .cart {
+      background: white;
+      padding: 18px;
+      margin: 14px 0;
+      border-radius: 10px;
+    }
+    button {
+      padding: 9px 14px;
+      cursor: pointer;
+      background: #d94832;
+      color: white;
+      border: 0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Food Delivery App</h1>
+  <p>Browse restaurants and add food to your order.</p>
+
+  <div class="restaurant">
+    <h2>Pizza Palace</h2>
+    <p>Margherita Pizza — ₹199</p>
+    <button onclick="addItem('Margherita Pizza', 199)">
+      Add to Cart
+    </button>
+  </div>
+
+  <div class="restaurant">
+    <h2>Burger House</h2>
+    <p>Veg Burger — ₹99</p>
+    <button onclick="addItem('Veg Burger', 99)">
+      Add to Cart
+    </button>
+  </div>
+
+  <div class="cart">
+    <h2>Your Cart</h2>
+    <ul id="items"></ul>
+    <p>Total: ₹<span id="total">0</span></p>
+    <button onclick="placeOrder()">Place Order</button>
+    <p id="message"></p>
+  </div>
+
+  <script>
+    let total = 0;
+
+    function addItem(name, price) {
+      const item = document.createElement("li");
+      item.textContent = name + " — ₹" + price;
+      document.getElementById("items").appendChild(item);
+      total += price;
+      document.getElementById("total").textContent = total;
+      document.getElementById("message").textContent = "";
+    }
+
+    function placeOrder() {
+      document.getElementById("message").textContent =
+        total > 0 ? "Order placed successfully!" :
+        "Please add an item first.";
+    }
+  </script>
+</body>
+</html>
