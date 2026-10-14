@@ -1,7 +1,6 @@
-```yaml
 name: Food Delivery CI/CD
 
-on:
+'on':
   push:
     branches: [main]
   pull_request:
@@ -14,7 +13,6 @@ permissions:
 jobs:
   test-and-package:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -44,16 +42,13 @@ jobs:
     needs: test-and-package
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
-
     permissions:
       contents: read
       pages: write
       id-token: write
-
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -69,4 +64,3 @@ jobs:
       - name: Deploy website
         id: deployment
         uses: actions/deploy-pages@v4
-```
